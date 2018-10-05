@@ -1,5 +1,6 @@
 {
   "name": "currency-api",
+  "alias": "currency-api-nodejs",
   "type": "docker",
   "features": {
     "cloud": "v2"
