@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `currency`.`exchange_rates` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `from_currency` CHAR(3) NOT NULL,
   `to_currency` CHAR(3) NOT NULL,
-  `rate` DECIMAL(7,7) NOT NULL,
+  `rate` DECIMAL(12,7) NOT NULL,
   `on_date` DATE NOT NULL,
   `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
