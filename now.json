@@ -1,0 +1,7 @@
+{
+  "name": "currency-api",
+  "type": "docker",
+  "features": {
+    "cloud": "v2"
+  }
+}
