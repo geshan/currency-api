@@ -5,6 +5,7 @@ const _ = require('lodash');
 
 async function getExternal(fromCurrency, toCurrency, onDate) {
   let rate = 0;
+  console.log(`Getting rate from the API not the db`);
   const fromToCurrency = `${fromCurrency}_${toCurrency}`;
   const response = await axios.get(
     `${config.currencyConverterApiBaseUrl}/convert?q=${fromToCurrency}&compact=ultra&date=${onDate}`      
@@ -14,6 +15,7 @@ async function getExternal(fromCurrency, toCurrency, onDate) {
   if(rate === 0) {
     throw new Error(`Error in fetching rate`);
   }
+  console.log(`rate is: `, rate);
   db.query(
     `INSERT INTO exchange_rates (from_currency, to_currency, rate, on_date) VALUES (?,?,?,?) ON DUPLICATE KEY UPDATE rate = ?`,
     [fromCurrency, toCurrency, rate, onDate, rate]
@@ -21,6 +23,8 @@ async function getExternal(fromCurrency, toCurrency, onDate) {
     if(result.affectedRows === 0) {
       console.error(`Exchange rate of ${rate} for ${fromCurrency} to ${toCurrency} on ${onDate} could not be saved`)
     }
+  }).catch(err => {
+    console.log(`Error while writing to db: `, err);
   }); //this is done async for the API to respond faster
  
   console.log(`Fetched exchange rate of ${rate} for ${fromCurrency} to ${toCurrency} of ${onDate} from the API`);
