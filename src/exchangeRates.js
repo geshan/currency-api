@@ -17,11 +17,10 @@ async function getExternal(fromCurrency, toCurrency, onDate) {
     console.log(`Error calling currency converter API: `, err.message);
     throw new httpError(400, `Problem fetching error rate try a date range within 1 year from today`);
   }
-  
   if(rate === 0) {
     throw new httpError(400, `Error in fetching rate`);
   }
-  console.log(`rate is: `, rate);
+    
   db.query(
     `INSERT INTO exchange_rates (from_currency, to_currency, rate, on_date) VALUES (?,?,?,?) ON DUPLICATE KEY UPDATE rate = ?`,
     [fromCurrency, toCurrency, rate, onDate, rate]
