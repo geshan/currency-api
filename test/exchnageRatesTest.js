@@ -86,6 +86,7 @@ describe('exchangeRates', () => {
         const result = await exchangeRates.get({fromCurrency: 'USD', toCurrency: 'AUD', onDate: '2018-07-21'});
         assert.equal(err.message, 'should never reach here');
       } catch (err) {
+        assert.equal(err.statusCode, 400);
         assert.equal(err.message, 'Error in fetching rate');        
       }
     });

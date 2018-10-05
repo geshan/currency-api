@@ -2,18 +2,24 @@ const axios = require('axios');
 const config = require('./config');
 const db = require('namshi-node-mysql')(config.db);
 const _ = require('lodash');
+const {httpError} = require('expressjs-utils');
 
 async function getExternal(fromCurrency, toCurrency, onDate) {
   let rate = 0;
   console.log(`Getting rate from the API not the db`);
   const fromToCurrency = `${fromCurrency}_${toCurrency}`;
-  const response = await axios.get(
-    `${config.currencyConverterApiBaseUrl}/convert?q=${fromToCurrency}&compact=ultra&date=${onDate}`      
-  );
-  rate = _.get(response,`data[${fromToCurrency}][${onDate}]`, 0);
-
+  try{
+    const response = await axios.get(
+      `${config.currencyConverterApiBaseUrl}/convert?q=${fromToCurrency}&compact=ultra&date=${onDate}`      
+    );
+    rate = _.get(response,`data[${fromToCurrency}][${onDate}]`, 0);  
+  } catch(err) {
+    console.log(`Error calling currency converter API: `, err.message);
+    throw new httpError(400, `Problem fetching error rate try a date range within 1 year from today`);
+  }
+  
   if(rate === 0) {
-    throw new Error(`Error in fetching rate`);
+    throw new httpError(400, `Error in fetching rate`);
   }
   console.log(`rate is: `, rate);
   db.query(
