@@ -62,3 +62,5 @@ To watch specific test(s) run `npm t -- -w -g "exchangeRates get` or even
 ### Code coverage
 
 To get the code coverage with Istanbul/nyc execute : `npm run test-cov`. You should see the code coverage on the cli.
+
+You can also check the code coverage on [code climate](https://codeclimate.com/github/geshan/currency-api/src/exchangeRates.js/source).
