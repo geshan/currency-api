@@ -10,4 +10,7 @@ COPY . /src
 
 EXPOSE 8080
 
+RUN npm config set unsafe-perm true
+RUN npm install -g nodemon
+
 CMD ["node", "index.js"]
