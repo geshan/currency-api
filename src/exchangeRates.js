@@ -13,9 +13,14 @@ async function getExternal(fromCurrency, toCurrency, onDate) {
       `${config.currencyConverterApiBaseUrl}/convert?q=${fromToCurrency}&compact=ultra&date=${onDate}`      
     );
     rate = _.get(response,`data[${fromToCurrency}][${onDate}]`, 0);  
-  } catch(err) {
+  } catch(err) {    
+    var message = `Problem fetching error rate try a date range within 1 year from today and check currencies`;
+    const remoteErrMessage = _.get(err, `response.data.error`);
+    if (remoteErrMessage) {
+      message = remoteErrMessage;
+    }
     console.log(`Error calling currency converter API: `, err.message);
-    throw new httpError(400, `Problem fetching error rate try a date range within 1 year from today`);
+    throw new httpError(400, message);
   }
   if(rate === 0) {
     throw new httpError(400, `Error in fetching rate`);
@@ -40,13 +45,13 @@ async function get(params) {
   const today = new Date().toISOString().split('T')[0];
   const {fromCurrency='AUD', toCurrency='USD', onDate=today} = params;
 
-  let exchangeRate = await db.query(
+  let exchangeRates = await db.query(
     `SELECT rate, created_at FROM exchange_rates WHERE from_currency = ? AND to_currency = ? AND on_date = ?`, 
     [fromCurrency, toCurrency, onDate]
   );
     
-  if (exchangeRate.length) {
-    const rate = Number(exchangeRate[0].rate);
+  if (exchangeRates.length) {
+    const rate = Number(exchangeRates[0].rate);
     console.log(`Found exchange rate of ${rate} for ${fromCurrency} to ${toCurrency} of ${onDate} in the db`);
     return {fromCurrency, toCurrency, onDate, rate};
   }
