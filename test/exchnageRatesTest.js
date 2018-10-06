@@ -74,6 +74,26 @@ describe('exchangeRates', () => {
       }
     });
 
+    it('should respond with proper error message if API send a bad request', async () => {
+      try {
+        mysqlStub.query = (query, params) => {
+          if (query.startsWith(`SELECT rate, created_at FROM exchange_rates`)) {
+            return [];
+          }         
+        };
+        let badResponse = {
+          status: 400,
+          error: "Currency ASD is unavailable from 2018-10-05 to 2018-10-05"
+        };        
+        nock('https://free.currencyconverterapi.com').get(/api*/).reply(400, badResponse);
+        const result = await exchangeRates.get({fromCurrency: 'ASD', toCurrency: 'AUD', onDate: '2018-10-05'});
+        assert.equal(err.message, 'should never reach here');
+      } catch (err) {
+        assert.equal(err.statusCode, 400);
+        assert.equal(err.message, 'Currency ASD is unavailable from 2018-10-05 to 2018-10-05');        
+      }
+    });
+
     it('should use given params and no results in db returns error if response from API is wrong', async () => {
       try {
         mysqlStub.query = (query, params) => {
