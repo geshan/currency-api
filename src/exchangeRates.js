@@ -42,13 +42,12 @@ async function getExternal(fromCurrency, toCurrency, onDate) {
 }
 
 async function get(params) {
-  const today = new Date().toISOString().split('T')[0];
+  const today= new Date().toISOString().split('T')[0];
   const {fromCurrency='AUD', toCurrency='USD', onDate=today} = params;
   let exchangeRates = await db.query(
     `SELECT rate, created_at FROM exchange_rates WHERE from_currency = ? AND to_currency = ? AND on_date = ?`, 
     [fromCurrency, toCurrency, onDate]
   );
-    
   if (exchangeRates.length) {
     const rate = Number(exchangeRates[0].rate);
     console.log(`Found exchange rate of ${rate} for ${fromCurrency} to ${toCurrency} of ${onDate} in the db`);
@@ -59,6 +58,18 @@ async function get(params) {
   return getExternal(fromCurrency, toCurrency, onDate);
 }
 
+async function getMultiple() {
+  let allExchangeRates = await db.query(
+    `SELECT from_currency, to_currency, rate, created_at FROM exchange_rates`,
+  );
+  if (allExchangeRates.length) {
+    return allExchangeRates;
+  }
+  
+  return [];
+}
+
 module.exports = {
-  get
+  get,
+  getMultiple,
 }
