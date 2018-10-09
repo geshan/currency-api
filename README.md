@@ -1,7 +1,7 @@
 ## Currency API
 
-A simple project to show how to test a Node Express app using MNP - Mocha Nock and Proxyquire.
-Code coverage is provided with Istanbul (now called nyc). Rewire can be used in place of 
+A simple project to show how to test a Node Express app using MNP - Mocha, Nock and Proxyquire.
+Code coverage is done with Istanbul (now called nyc). Rewire can be used in place of 
 proxyquire to test private JS methods. This app is a very basic currency API.
 
 [![Build Status](https://travis-ci.org/geshan/currency-api.svg?branch=master)](https://travis-ci.org/geshan/currency-api) [![Maintainability](https://api.codeclimate.com/v1/badges/54eef9745fdb3b5c5476/maintainability)](https://codeclimate.com/github/geshan/currency-api/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/54eef9745fdb3b5c5476/test_coverage)](https://codeclimate.com/github/geshan/currency-api/test_coverage)
