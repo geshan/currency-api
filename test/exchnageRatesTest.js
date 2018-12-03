@@ -12,7 +12,7 @@ const today = new Date().toISOString().split('T')[0];
 
 describe('exchangeRates', () => {
   describe('get', () => {
-    it('should use default params if no params are provided and no results in db, insert new rate to db', async () => {
+    it('should use given params and if no results are in db, inserts new rate to db while returing it', async () => {
       try {
         mysqlStub.query = (query, params) => {
           if (query.startsWith(`SELECT rate, created_at FROM exchange_rates`)) {
@@ -36,13 +36,13 @@ describe('exchangeRates', () => {
 
         let apiResponse = {'AUD_USD': {}};
         apiResponse['AUD_USD'][today] = 0.742725;
-        nock('https://free.currencyconverterapi.com').get(/api*/).reply(200, apiResponse);
+        nock('https://free.currencyconverterapi.com').get(/api\/v6\/convert\?q=*/).reply(200, apiResponse);
 
-        const result = await exchangeRates.get({});
+        const result = await exchangeRates.get({fromCurrency: 'AUD', toCurrency: 'USD', onDate: '2018-12-03'});
         assert.deepEqual(result, { 
           fromCurrency: 'AUD',
           toCurrency: 'USD',
-          onDate: today,
+          onDate: '2018-12-03',
           rate: 0.742725 
         });
       } catch (err) {
@@ -51,7 +51,7 @@ describe('exchangeRates', () => {
       }
     });
 
-    it('should use default params if no params are provided and results in db', async () => {
+    it('should use default params if no params are provided, retuns rate from db if rate is in db', async () => {
       try {
         mysqlStub.query = (query, params) => {
           if (query.startsWith('SELECT rate, created_at FROM exchange_rates')) {
@@ -74,7 +74,7 @@ describe('exchangeRates', () => {
       }
     });
 
-    it('should respond with proper error message if API send a bad request', async () => {
+    it('should respond with proper error message if API sends a bad request', async () => {
       try {
         mysqlStub.query = (query, params) => {
           if (query.startsWith(`SELECT rate, created_at FROM exchange_rates`)) {
@@ -86,6 +86,7 @@ describe('exchangeRates', () => {
           error: "Currency ASD is unavailable from 2018-10-05 to 2018-10-05"
         };        
         nock('https://free.currencyconverterapi.com').get(/api*/).reply(400, badResponse);
+
         const result = await exchangeRates.get({fromCurrency: 'ASD', toCurrency: 'AUD', onDate: '2018-10-05'});
         assert.equal(err.message, 'should never reach here');
       } catch (err) {

@@ -53,6 +53,7 @@ async function get(params) {
   if (exchangeRates.length) {
     const rate = Number(exchangeRates[0].rate);
     console.log(`Found exchange rate of ${rate} for ${fromCurrency} to ${toCurrency} of ${onDate} in the db`);
+    
     return {fromCurrency, toCurrency, onDate, rate};
   }
   
