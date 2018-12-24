@@ -14,6 +14,7 @@ describe('exchangeRates', () => {
   describe('get', () => {
     it('should use given params and if no results are in db, inserts new rate to db while returing it', async () => {
       try {
+        const onDate = '2018-12-03';
         mysqlStub.query = (query, params) => {
           if (query.startsWith(`SELECT rate, created_at FROM exchange_rates`)) {
             return [];
@@ -22,7 +23,7 @@ describe('exchangeRates', () => {
           if(query.startsWith(`INSERT INTO exchange_rates`)) {
             assert.ok(query.includes(`(from_currency, to_currency, rate, on_date) VALUES (?,?,?,?)`))
             assert.ok(query.includes(`ON DUPLICATE KEY UPDATE rate = ?`))
-            assert.deepEqual(params, ['AUD', 'USD', 0.742725, today, 0.742725]);
+            assert.deepEqual(params, ['AUD', 'USD', 0.742725, onDate, 0.742725]);
             return Promise.resolve({
               fieldCount: 0,
               affectedRows: 1,
@@ -35,10 +36,10 @@ describe('exchangeRates', () => {
         };
 
         let apiResponse = {'AUD_USD': {}};
-        apiResponse['AUD_USD'][today] = 0.742725;
+        apiResponse['AUD_USD'][onDate] = 0.742725;
         nock('https://free.currencyconverterapi.com').get(/api\/v6\/convert\?q=*/).reply(200, apiResponse);
 
-        const result = await exchangeRates.get({fromCurrency: 'AUD', toCurrency: 'USD', onDate: '2018-12-03'});
+        const result = await exchangeRates.get({fromCurrency: 'AUD', toCurrency: 'USD', onDate});
         assert.deepEqual(result, { 
           fromCurrency: 'AUD',
           toCurrency: 'USD',
