@@ -44,7 +44,6 @@ async function getExternal(fromCurrency, toCurrency, onDate) {
 async function get(params) {
   const today = new Date().toISOString().split('T')[0];
   const {fromCurrency='AUD', toCurrency='USD', onDate=today} = params;
-
   let exchangeRates = await db.query(
     `SELECT rate, created_at FROM exchange_rates WHERE from_currency = ? AND to_currency = ? AND on_date = ?`, 
     [fromCurrency, toCurrency, onDate]
