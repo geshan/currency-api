@@ -10,7 +10,7 @@ async function getExternal(fromCurrency, toCurrency, onDate) {
   const fromToCurrency = `${fromCurrency}_${toCurrency}`;
   try{
     const response = await axios.get(
-      `${config.currencyConverterApiBaseUrl}/convert?q=${fromToCurrency}&compact=ultra&date=${onDate}`      
+      `${config.currencyConverterApi.baseUrl}/convert?q=${fromToCurrency}&compact=ultra&date=${onDate}&apiKey=${config.currencyConverterApi.key}`      
     );
     rate = _.get(response,`data[${fromToCurrency}][${onDate}]`, 0);  
   } catch(err) {    

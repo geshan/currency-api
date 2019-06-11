@@ -1,12 +1,16 @@
 const env = process.env;
 const config = {
   db: {
-    host: env.DB_HOST || 'db4free.org',
+    host: env.DB_HOST || '35.201.28.84',
     user: env.DB_USER || 'currency_user',
     password: env.DB_PASSWORD || '715e147f',
-    database: env.DB_NAME || `currency_db`,
+    database: env.DB_NAME || `currency`,
   },
-  currencyConverterApiBaseUrl: 'https://free.currencyconverterapi.com/api/v6'
+  currencyConverterApi: {
+    baseUrl: 'https://free.currconv.com/api/v7',
+    key: 'ca0133cec785f144a8c5'
+  }
 }
 
 module.exports = config;
+
