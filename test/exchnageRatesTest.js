@@ -37,7 +37,7 @@ describe('exchangeRates', () => {
 
         let apiResponse = {'AUD_USD': {}};
         apiResponse['AUD_USD'][onDate] = 0.742725;
-        nock('https://free.currencyconverterapi.com').get(/api\/v6\/convert\?q=*/).reply(200, apiResponse);
+        nock('https://free.currconv.com').get(/api\/v7\/convert\?q=*/).reply(200, apiResponse);
 
         const result = await exchangeRates.get({fromCurrency: 'AUD', toCurrency: 'USD', onDate});
         assert.deepEqual(result, { 
@@ -86,7 +86,7 @@ describe('exchangeRates', () => {
           status: 400,
           error: "Currency ASD is unavailable from 2018-10-05 to 2018-10-05"
         };        
-        nock('https://free.currencyconverterapi.com').get(/api*/).reply(400, badResponse);
+        nock('https://free.currconv.com').get(/api*/).reply(400, badResponse);
 
         const result = await exchangeRates.get({fromCurrency: 'ASD', toCurrency: 'AUD', onDate: '2018-10-05'});
         assert.equal(err.message, 'should never reach here');
@@ -104,7 +104,7 @@ describe('exchangeRates', () => {
           }         
         };
         let wrongApiResponse = {'AUD_USD': {}};        
-        nock('https://free.currencyconverterapi.com').get(/api*/).reply(200, wrongApiResponse);
+        nock('https://free.currconv.com').get(/api*/).reply(200, wrongApiResponse);
         const result = await exchangeRates.get({fromCurrency: 'USD', toCurrency: 'AUD', onDate: '2018-07-21'});
         assert.equal(err.message, 'should never reach here');
       } catch (err) {
