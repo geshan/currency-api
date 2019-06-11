@@ -1,8 +1,10 @@
 {
+  "version": 2,
   "name": "currency-api",
-  "alias": "currency-api-nodejs",
-  "type": "docker",
-  "features": {
-    "cloud": "v2"
-  }
+  "builds": [
+    { "src": "*.js", "use": "@now/node" }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "/" }
+  ]
 }
