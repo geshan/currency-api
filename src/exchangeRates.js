@@ -60,7 +60,7 @@ async function get(params) {
 
 async function getMultiple() {
   let allExchangeRates = await db.query(
-    `SELECT from_currency, to_currency, rate, created_at FROM exchange_rates`,
+    `SELECT from_currency, to_currency, rate, created_at FROM exchange_rates LIMIT 10`,
   );
   if (allExchangeRates.length) {
     return allExchangeRates;
