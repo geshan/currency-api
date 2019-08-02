@@ -17,14 +17,12 @@ app.get('/api/convert/:fromCurrency/:toCurrency/:onDate', async (req, res) => {
   res.json(await exchangeRates.get(req.params));
 });
 
-
 app.get('/api/rates', async (req,res) => {
   //res.json({message: `All Caches Rates will come here`});
   res.json(await exchangeRates.getMultiple(req.query.page || 1));
 });
+
 expressUtils.hc(app);
 expressUtils.static(app);
 expressUtils.errorHandler(app);
 expressUtils.start(app, 8080, 'dev');
-
-

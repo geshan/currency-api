@@ -1,12 +1,9 @@
 
-
 const axios = require('axios');
 const config = require('./config');
 const db = require('namshi-node-mysql')(config.db);
 const _ = require('lodash');
 const {httpError} = require('expressjs-utils');
-
-
 
 async function getExternal(fromCurrency, toCurrency, onDate) {
   let rate = 0;
@@ -63,24 +60,19 @@ async function get(params) {
 }
 
 async function getMultiple(currentPage) {
-  let itemsPerPage = 10;
 
-  let offset = (currentPage - 1) * itemsPerPage;
-
-  console.log(offset);
+  let offset = (currentPage - 1) * [config.itemsPerPage];
 
   let allExchangeRates = await db.query(
-      `SELECT from_currency, to_currency, rate, created_at FROM exchange_rates ORDER BY rate desc LIMIT ${offset}, ${itemsPerPage}`);
+      `SELECT from_currency, to_currency, rate, created_at FROM exchange_rates LIMIT ${offset}, ${config.itemsPerPage}`);
 
   if (allExchangeRates) {
     return allExchangeRates;
   }
   return [];
-
 }
 
 module.exports = {
   get,
   getMultiple,
 };
-
