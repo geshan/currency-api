@@ -13,6 +13,4 @@ const config = {
   itemsPerPage: 10
 };
 
-
 module.exports = config;
-

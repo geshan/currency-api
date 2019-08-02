@@ -1,4 +1,3 @@
-
 const axios = require('axios');
 const config = require('./config');
 const db = require('namshi-node-mysql')(config.db);
@@ -75,4 +74,5 @@ async function getMultiple(currentPage) {
 module.exports = {
   get,
   getMultiple,
+
 };
