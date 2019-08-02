@@ -112,14 +112,12 @@ describe('exchangeRates', () => {
         assert.equal(err.message, 'Error in fetching rate');
       }
     });
-
       it('should paginate the result with the limit of 10 rows per page', async () => {
         try {
           mysqlStub.query = (query, params) => {
-            if (query.startsWith(`SELECT from_currency, to_currency`)
-                && query.endsWith(`LIMIT ${exchangeRates.offset}, ${exchangeRates.itemsPerPage}`)){
-              return[];
-            }
+            if (query.startsWith(`SELECT from_currency, to_currency`
+                && query.endsWith(`LIMIT 0 10`)))
+          return[];
           };
           const result = await exchangeRates.getMultiple({});
           assert.deepStrictEqual(result, []);
@@ -130,3 +128,4 @@ describe('exchangeRates', () => {
       });
     });
   });
+
