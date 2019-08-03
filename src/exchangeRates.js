@@ -14,7 +14,7 @@ async function getExternal(fromCurrency, toCurrency, onDate) {
     );
     rate = _.get(response,`data[${fromToCurrency}][${onDate}]`, 0);
   } catch(err) {
-    var message = `Problem fetching error rate try a date range within 1 year from today and check currencies`;
+    let message = `Problem fetching error rate try a date range within 1 year from today and check currencies`;
     const remoteErrMessage = _.get(err, `response.data.error`);
     if (remoteErrMessage) {
       message = remoteErrMessage;
@@ -74,5 +74,4 @@ async function getMultiple(currentPage) {
 module.exports = {
   get,
   getMultiple,
-
 };
