@@ -115,9 +115,10 @@ describe('exchangeRates', () => {
       it('should paginate the result with the limit of 10 rows per page', async () => {
         try {
           mysqlStub.query = (query, params) => {
-            if (query.startsWith(`SELECT from_currency, to_currency`
-                && query.endsWith(`LIMIT 0 10`)))
-          return[];
+            if (query.startsWith(`SELECT from_currency, to_currency`)
+                && query.endsWith(`LIMIT 0 10`)) {
+              return [];
+            }
           };
           const result = await exchangeRates.getMultiple({});
           assert.deepStrictEqual(result, []);

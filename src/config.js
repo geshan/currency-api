@@ -10,7 +10,9 @@ const config = {
     baseUrl: 'https://free.currconv.com/api/v7',
     key: 'ca0133cec785f144a8c5'
   },
-  itemsPerPage: 10
+  itemsPerPage: {
+    value: env.ITEMS_PER_PAGE || 10
+  }
 };
 
 module.exports = config;

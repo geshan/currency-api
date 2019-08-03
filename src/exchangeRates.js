@@ -60,10 +60,10 @@ async function get(params) {
 
 async function getMultiple(currentPage) {
 
-  let offset = (currentPage - 1) * [config.itemsPerPage];
+  let offset = (currentPage - 1) * [config.itemsPerPage.value];
 
-  let allExchangeRates = await db.query(
-      `SELECT from_currency, to_currency, rate, created_at FROM exchange_rates LIMIT ${offset}, ${config.itemsPerPage}`);
+  let allExchangeRates = await db.query
+  (`SELECT from_currency, to_currency, rate, on_date FROM exchange_rates LIMIT ?,?`,[offset, config.itemsPerPage.value] );
 
   if (allExchangeRates) {
     return allExchangeRates;
