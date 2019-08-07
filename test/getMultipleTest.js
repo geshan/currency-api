@@ -27,13 +27,16 @@ describe('exchangeRates', () => {
                 assert.strictEqual(err.message, "should never reach here");
             }
         });
-        it("should return employees from the db when employees exists", async () => {
+        it("should return exchange rates from the db when exchange rates exists", async () => {
             try {
                 mysqlStub.query = (query, params) => {
                     if (query.startsWith(`SELECT from_currency, to_currency`)) {
                         return [
                             {
-
+                                from_currency:"USD",
+                                to_currency:"AUD",
+                                rate:1.4374030,
+                                on_date:"2019-06-10T14:00:00.000Z"
                             }
                         ];
                     }
@@ -41,7 +44,10 @@ describe('exchangeRates', () => {
 
                 const result = await exchangeRates.getMultiple({});
                 assert.deepStrictEqual(result[0], {
-
+                    from_currency:"USD",
+                    to_currency:"AUD",
+                    rate:1.4374030,
+                    on_date:"2019-06-10T14:00:00.000Z"
                 });
             } catch (err) {
                 console.log(`err`, err);
