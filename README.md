@@ -47,7 +47,7 @@ Configs for db like username, password etc are in the `/src/config.js` file.
 ## Run
 
 to run the app you can use `docker-compose up` the go to `http://localhost:8080/api/convert/AUD/USD/2018-07-23` on the browser. It is using the db on 
-`db4free.net` so no need to setup the db locally. If you want to set it up locally change the config
+`remotemysql.com` so no need to setup the db locally. If you want to set it up locally change the config
 in `src/configs.js`.
 
 ## Run tests
