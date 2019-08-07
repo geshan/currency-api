@@ -4,11 +4,11 @@ A simple project to show how to test a Node Express app using MNP - Mocha, Nock 
 Code coverage is done with Istanbul (now called nyc). Rewire can be used in place of 
 proxyquire to test private JS methods. This app is a very basic currency API.
 
-[![Build Status](https://travis-ci.org/geshan/currency-api.svg?branch=master)](https://travis-ci.org/geshan/currency-api) [![Maintainability](https://api.codeclimate.com/v1/badges/54eef9745fdb3b5c5476/maintainability)](https://codeclimate.com/github/geshan/currency-api/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/54eef9745fdb3b5c5476/test_coverage)](https://codeclimate.com/github/geshan/currency-api/test_coverage)
+[![Build Status](https://travis-ci.org/geshan/currency-api.svg?branch=master)](https://travis-ci.org/geshan/currency-api) [![Maintainability](https://api.codeclimate.com/v1/badges/54eef9745fdb3b5c5476/maintainability)](https://codeclimate.com/github/geshan/currency-api/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/54eef9745fdb3b5c5476/test_coverage)](https://codeclimate.com/github/geshan/currency-api/test_coverage) [![Greenkeeper badge](https://badges.greenkeeper.io/geshan/currency-api.svg)](https://greenkeeper.io/)
 
 ## Running app
 
-You can see this app running on [Zeit Now](https://currency-api-nodejs.now.sh/api/convert/USD/AUD/2018-10-05), each pull request will have it's own URL.
+You can see this app running on [Zeit Now](https://currency-api.geshanm.now.sh/api/convert/USD/AUD/2019-08-05), each pull request will have it's own URL.
 
 ## How it works
 
