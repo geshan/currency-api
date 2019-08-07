@@ -12,7 +12,7 @@ app.get('/', (req,res) => {
   example: ${req.get('host')}/api/convert/USD/AUD/${new Date().toISOString().split('T')[0]}`});
 });
 
-app.get('/api/convert/:fromCurrency/:toCurrency/:onDate', async (req, res) => {
+app.get('/api/convert/:fromCurrency/:toCurrency/:onDate?', async (req, res) => {
   console.log(`Api hit`, req.params);
   res.json(await exchangeRates.get(req.params));
 });
