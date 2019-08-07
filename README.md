@@ -8,7 +8,7 @@ proxyquire to test private JS methods. This app is a very basic currency API.
 
 ## Running app
 
-You can see this app running on [Zeit Now](https://currency-api-nodejs.now.sh/api/convert/USD/AUD/2018-10-05), each pull request will have it's own URL.
+You can see this app running on [Zeit Now](https://currency-api.geshanm.now.sh/api/convert/USD/AUD/2019-08-05), each pull request will have it's own URL.
 
 ## How it works
 
