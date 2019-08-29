@@ -13,7 +13,7 @@ async function getExternal(fromCurrency, toCurrency, onDate) {
     );
     rate = _.get(response, `data.rates[${toCurrency}]`, 0);
   } catch (err) {
-    let message = `Problem fetching error rate try a date range within 1 year from today and check currencies`;
+    let message = `Problem fetching error rate try a date range after 1999-01-04 and check currencies`;
     const remoteErrMessage = _.get(err, `response.data.error`);
     if (remoteErrMessage) {
       message = remoteErrMessage;
