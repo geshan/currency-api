@@ -7,7 +7,6 @@ const { httpError } = require("expressjs-utils");
 async function getExternal(fromCurrency, toCurrency, onDate) {
   let rate = 0;
   console.log(`Getting rate from the API not the db`);
-  const fromToCurrency = `${fromCurrency}_${toCurrency}`;
   try {
     const response = await axios.get(
       `${config.currencyConverterApi.baseUrl}/${onDate}?base=${fromCurrency}&symbols=${toCurrency}`
