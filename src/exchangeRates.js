@@ -1,8 +1,8 @@
-const axios = require("axios");
-const config = require("./config");
-const db = require("namshi-node-mysql")(config.db);
-const _ = require("lodash");
-const { httpError } = require("expressjs-utils");
+const axios = require('axios');
+const config = require('./config');
+const db = require('namshi-node-mysql')(config.db);
+const _ = require('lodash');
+const { httpError } = require('expressjs-utils');
 
 async function getExternal(fromCurrency, toCurrency, onDate) {
   let rate = 0;
@@ -31,33 +31,27 @@ async function getExternal(fromCurrency, toCurrency, onDate) {
   )
     .then(result => {
       if (result.affectedRows === 0) {
-        console.error(
-          `Exchange rate of ${rate} for ${fromCurrency} to ${toCurrency} on ${onDate} could not be saved`
-        );
+        console.error(`Exchange rate of ${rate} for ${fromCurrency} to ${toCurrency} on ${onDate} could not be saved`);
       }
     })
     .catch(err => {
       console.log(`Error while writing to db: `, err);
     }); //this is done async for the API to respond faster
 
-  console.log(
-    `Fetched exchange rate of ${rate} for ${fromCurrency} to ${toCurrency} of ${onDate} from the API`
-  );
+  console.log(`Fetched exchange rate of ${rate} for ${fromCurrency} to ${toCurrency} of ${onDate} from the API`);
   return { fromCurrency, toCurrency, onDate, rate };
 }
 
 async function get(params) {
-  const today = new Date().toISOString().split("T")[0];
-  const { fromCurrency = "AUD", toCurrency = "USD", onDate = today } = params;
+  const today = new Date().toISOString().split('T')[0];
+  const { fromCurrency = 'AUD', toCurrency = 'USD', onDate = today } = params;
   let exchangeRates = await db.query(
     `SELECT rate, created_at FROM exchange_rates WHERE from_currency = ? AND to_currency = ? AND on_date = ?`,
     [fromCurrency, toCurrency, onDate]
   );
   if (exchangeRates.length) {
     const rate = Number(exchangeRates[0].rate);
-    console.log(
-      `Found exchange rate of ${rate} for ${fromCurrency} to ${toCurrency} of ${onDate} in the db`
-    );
+    console.log(`Found exchange rate of ${rate} for ${fromCurrency} to ${toCurrency} of ${onDate} in the db`);
 
     return { fromCurrency, toCurrency, onDate, rate };
   }
@@ -81,5 +75,5 @@ async function getMultiple(currentPage) {
 
 module.exports = {
   get,
-  getMultiple
+  getMultiple,
 };
