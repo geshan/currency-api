@@ -10,6 +10,10 @@ proxyquire to test private JS methods. This app is a very basic currency API.
 
 You can see this app running on [Zeit Now](https://currency-api.geshanm.now.sh/api/convert/USD/AUD/2019-08-05), each pull request will have it's own URL.
 
+## Run on Google cloud run
+
+[![Run on Google Cloud](https://storage.googleapis.com/cloudrun/button.svg)](https://console.cloud.google.com/cloudshell/editor?shellonly=true&cloudshell_image=gcr.io/cloudrun/button&cloudshell_git_repo=https://github.com/geshan/currency-api.git)
+
 ## How it works
 
 The `GET` api works in the following way:
