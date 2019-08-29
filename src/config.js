@@ -7,10 +7,9 @@ const config = {
     database: env.DB_NAME || `x0B9v9MaCy`,
   },
   currencyConverterApi: {
-    baseUrl: 'https://free.currconv.com/api/v7',
-    key: 'ca0133cec785f144a8c5'
+    baseUrl: 'https://api.exchangeratesapi.io',
   },
-  itemsPerPage: env.ITEMS_PER_PAGE || 10
+  itemsPerPage: env.ITEMS_PER_PAGE || 10,
 };
 
 module.exports = config;
