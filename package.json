@@ -6,7 +6,8 @@
   "scripts": {
     "start": "PORT=8080 nodemon -L -e js,yml,sql index.js",
     "test": "mocha -t 500 -b",
-    "test-cov": "nyc mocha -t 500 -b"
+    "test-cov": "nyc mocha -t 500 -b",
+    "mutation-cov": "stryker run"
   },
   "repository": {
     "type": "git",
