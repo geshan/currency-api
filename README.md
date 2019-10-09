@@ -1,7 +1,7 @@
 ## Currency API
 
 A simple project to show how to test a Node Express app using MNP - Mocha, Nock and Proxyquire.
-Code coverage is done with Istanbul (now called nyc). Rewire can be used in place of 
+Code coverage is done with Istanbul (now called nyc). Rewire can be used in place of
 proxyquire to test private JS methods. This app is a very basic currency API.
 
 [![Build Status](https://travis-ci.org/geshan/currency-api.svg?branch=master)](https://travis-ci.org/geshan/currency-api) [![Maintainability](https://api.codeclimate.com/v1/badges/54eef9745fdb3b5c5476/maintainability)](https://codeclimate.com/github/geshan/currency-api/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/54eef9745fdb3b5c5476/test_coverage)](https://codeclimate.com/github/geshan/currency-api/test_coverage) [![Greenkeeper badge](https://badges.greenkeeper.io/geshan/currency-api.svg)](https://greenkeeper.io/)
@@ -66,3 +66,17 @@ To watch specific test(s) run `npm t -- -w -g "exchangeRates get` or even
 To get the code coverage with Istanbul/nyc execute : `npm run test-cov`. You should see the code coverage on the cli.
 
 You can also check the code coverage on [code climate](https://codeclimate.com/github/geshan/currency-api/src/exchangeRates.js/source).
+
+### Mutation testing
+
+Has some mutation testing done with [Stryker](https://stryker-mutator.io/stryker/quickstart). Current
+coverage is ~88% with mostly log lines failing. To run the mutation tests run the following after
+installing stryker.
+
+```bash
+stryker run
+
+or
+
+npm run mutation-cov
+```

@@ -19,7 +19,7 @@ describe('exchangeRates', () => {
           }
         };
 
-        const result = await exchangeRates.getMultiple({});
+        const result = await exchangeRates.getMultiple(0);
         assert.deepStrictEqual(result, []);
       } catch (err) {
         console.log(`err`, err);
@@ -29,6 +29,9 @@ describe('exchangeRates', () => {
     it('should return exchange rates from the db when exchange rates exists', async () => {
       try {
         mysqlStub.query = (query, params) => {
+          assert.equal(params.length, 2);
+          assert.equal(params[0], 0);
+          assert.equal(params[1], 10);
           if (query.startsWith(`SELECT from_currency, to_currency`)) {
             return [
               {
@@ -41,7 +44,7 @@ describe('exchangeRates', () => {
           }
         };
 
-        const result = await exchangeRates.getMultiple({});
+        const result = await exchangeRates.getMultiple(1);
         assert.deepStrictEqual(result[0], {
           from_currency: 'USD',
           to_currency: 'AUD',

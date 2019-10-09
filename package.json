@@ -6,7 +6,8 @@
   "scripts": {
     "start": "PORT=8080 nodemon -L -e js,yml,sql index.js",
     "test": "mocha -t 500 -b",
-    "test-cov": "nyc mocha -t 500 -b"
+    "test-cov": "nyc mocha -t 500 -b",
+    "mutation-cov": "stryker run"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,10 @@
     "namshi-node-mysql": "^2.0.0"
   },
   "devDependencies": {
+    "@stryker-mutator/core": "^2.1.0",
+    "@stryker-mutator/javascript-mutator": "^2.1.0",
+    "@stryker-mutator/mocha-framework": "^2.1.0",
+    "@stryker-mutator/mocha-runner": "^2.1.0",
     "husky": "^3.0.2",
     "mocha": "^6.2.0",
     "nock": "^11.1.0",
