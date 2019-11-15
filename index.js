@@ -7,9 +7,11 @@ const exchangeRates = require('./src/exchangeRates');
 const app = express();
 app.use(bodyParser.json());
 
-app.get('/', (req,res) => {
-  res.json({message: `Please hit the api like: /api/convert/fromCurrency/toCurrency/onDate 
-  example: ${req.get('host')}/api/convert/USD/AUD/${new Date().toISOString().split('T')[0]}`});
+app.get('/', (req, res) => {
+  res.json({
+    message: `Please hit the api like: /api/convert/fromCurrency/toCurrency/onDate 
+  example: ${req.get('host')}/api/convert/USD/AUD/${new Date().toISOString().split('T')[0]} , use it well.`,
+  });
 });
 
 app.get('/api/convert/:fromCurrency/:toCurrency/:onDate?', async (req, res) => {
@@ -17,7 +19,7 @@ app.get('/api/convert/:fromCurrency/:toCurrency/:onDate?', async (req, res) => {
   res.json(await exchangeRates.get(req.params));
 });
 
-app.get('/api/rates', async (req,res) => {
+app.get('/api/rates', async (req, res) => {
   res.json(await exchangeRates.getMultiple(req.query.page || 1));
 });
 
