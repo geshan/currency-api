@@ -6,4 +6,4 @@ steps:
   args: ["push", "gcr.io/$PROJECT_ID/currency-api"]
 
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['beta', 'run', 'deploy', 'currency-api', '--image', 'gcr.io/$PROJECT_ID/currency-api:${SHORT_SHA}', '--region', 'us-central1', '--platform', 'managed', '--memory', '128Mi','--max-instances', '3' ,'--allow-unauthenticated']
+  args: ['beta', 'run', 'deploy', 'currency-api', '--image', 'gcr.io/$PROJECT_ID/currency-api:${SHORT_SHA}', '--region', 'us-central1', '--platform', 'managed', '--memory', '128Mi', '--max-instances', '3' , '--allow-unauthenticated']
