@@ -1,7 +1,5 @@
 FROM node:12-alpine
 
-RUN apk update && apk add git
-
 WORKDIR /src
 COPY package.json package-lock.json /src/
 RUN npm install --production
