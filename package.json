@@ -7,7 +7,9 @@
     "start": "PORT=8080 nodemon -L -e js,yml,sql index.js",
     "test": "mocha -t 500 -b",
     "test-cov": "nyc mocha -t 500 -b",
-    "mutation-cov": "stryker run"
+    "mutation-cov": "stryker run",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -29,7 +31,8 @@
     "express-async-errors": "^3.1.1",
     "expressjs-utils": "^3.1.4",
     "lodash": "^4.17.13",
-    "namshi-node-mysql": "^2.1.0"
+    "namshi-node-mysql": "^2.1.0",
+    "snyk": "^1.316.2"
   },
   "devDependencies": {
     "@stryker-mutator/core": "^3.0.0",
@@ -47,5 +50,6 @@
     "hooks": {
       "pre-commit": "pretty-quick --staged"
     }
-  }
+  },
+  "snyk": true
 }
