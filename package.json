@@ -30,7 +30,7 @@
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
     "expressjs-utils": "^3.1.4",
-    "lodash": "^4.17.13",
+    "lodash": "^4.17.19",
     "namshi-node-mysql": "^2.1.0",
     "snyk": "^1.349.0"
   },
