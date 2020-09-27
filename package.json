@@ -32,7 +32,7 @@
     "expressjs-utils": "^3.1.4",
     "lodash": "^4.17.20",
     "namshi-node-mysql": "^2.1.0",
-    "snyk": "^1.398.1"
+    "snyk": "^1.401.0"
   },
   "devDependencies": {
     "@stryker-mutator/core": "^3.0.0",
