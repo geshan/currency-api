@@ -73,7 +73,23 @@ async function getMultiple(currentPage) {
   return [];
 }
 
+async function getByToCurrency(currentPage, currency) {
+  const offset = (currentPage - 1) * config.itemsPerPage;
+
+  let currencyExchangeRates = await db.query(
+    `SELECT from_currency, to_currency, rate, on_date FROM exchange_rates where to_currency = ? LIMIT ?,?`,
+    [currency, offset, config.itemsPerPage]
+  );
+
+  if (currencyExchangeRates.length) {
+    return currencyExchangeRates;
+  }
+
+  return [];
+}
+
 module.exports = {
   get,
   getMultiple,
+  getByToCurrency,
 };
