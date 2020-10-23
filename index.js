@@ -27,6 +27,8 @@ app.get('/api/rates/:currency', async (req, res) => {
   res.json(await exchangeRates.getByToCurrency(req.query.page || 1, req.params.currency));
 });
 
+//comment
+
 expressUtils.hc(app);
 expressUtils.static(app);
 expressUtils.errorHandler(app);
