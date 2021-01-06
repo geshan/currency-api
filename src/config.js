@@ -2,9 +2,9 @@ const env = process.env;
 const config = {
   db: {
     host: env.DB_HOST || 'remotemysql.com',
-    user: env.DB_USER || 'x0B9v9MaCy',
-    password: env.DB_PASSWORD || 's7RjzSve5L',
-    database: env.DB_NAME || `x0B9v9MaCy`,
+    user: env.DB_USER || '8VjostCYYk',
+    password: env.DB_PASSWORD || 't87tn6wIMB',
+    database: env.DB_NAME || `8VjostCYYk`,
   },
   currencyConverterApi: {
     baseUrl: 'https://api.exchangeratesapi.io',
