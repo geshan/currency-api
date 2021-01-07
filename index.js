@@ -2,9 +2,11 @@ const express = require('express');
 require('express-async-errors');
 const expressUtils = require('expressjs-utils');
 const bodyParser = require('body-parser');
+const helmet = require('helmet');
 const exchangeRates = require('./src/exchangeRates');
 
 const app = express();
+app.use(helmet());
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
