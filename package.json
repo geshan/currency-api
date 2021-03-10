@@ -36,6 +36,7 @@
     "snyk": "^1.473.0"
   },
   "devDependencies": {
+    "@architect/sandbox": "^3.3.7",
     "@stryker-mutator/core": "^3.0.0",
     "@stryker-mutator/javascript-mutator": "^3.0.0",
     "@stryker-mutator/mocha-framework": "^3.0.0",
