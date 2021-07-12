@@ -33,7 +33,7 @@
     "helmet": "^4.6.0",
     "lodash": "^4.17.21",
     "namshi-node-mysql": "^2.1.0",
-    "snyk": "^1.653.0"
+    "snyk": "^1.658.0"
   },
   "devDependencies": {
     "@architect/sandbox": "^3.3.7",
