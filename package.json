@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "@architect/sandbox": "^3.3.7",
-    "@stryker-mutator/core": "^3.0.0",
+    "@stryker-mutator/core": "^6.2.3",
     "@stryker-mutator/javascript-mutator": "^3.0.0",
     "@stryker-mutator/mocha-framework": "^3.0.0",
     "@stryker-mutator/mocha-runner": "^3.0.0",
