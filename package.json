@@ -27,13 +27,13 @@
   "dependencies": {
     "axios": "^0.23.0",
     "body-parser": "^1.20.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-async-errors": "^3.1.1",
     "expressjs-utils": "^1.2.3",
     "helmet": "^4.6.0",
     "lodash": "^4.17.21",
     "namshi-node-mysql": "^2.1.0",
-    "snyk": "^1.996.0"
+    "snyk": "^1.1064.0"
   },
   "devDependencies": {
     "@architect/sandbox": "^5.4.0",
