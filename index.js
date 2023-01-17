@@ -32,4 +32,4 @@ app.get('/api/rates/:currency', async (req, res) => {
 expressUtils.hc(app);
 expressUtils.static(app);
 expressUtils.errorHandler(app);
-expressUtils.start(app, console, 8080, 'dev');
+expressUtils.start(app, 8080, 'dev');
