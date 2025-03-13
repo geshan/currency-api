@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/geshan/currency-api",
   "dependencies": {
-    "axios": "^1.6.4",
+    "axios": "^1.8.2",
     "body-parser": "^1.20.1",
     "express": "^4.17.3",
     "express-async-errors": "^3.1.1",
